@@ -107,3 +107,26 @@ GO: dep ensure -add go.mongodb.org/mongo-driver/mongo
 <li>Acceder a una colección MongoCollection.</li>
 <li>CRUD.</li>
 </ol>
+
+#### Bases de datos, Colecciones y Documentos en MongoDB
+
+```
+Base de datos:
+
+    Contenedor físico de colecciones.
+    Cada base de datos tiene su archivo propio en el sistema de archivos.
+    Un cluster puede tener múltiples bases de datos.
+
+Colecciones:
+
+    Agrupación de documentos.
+    Equivalente a una tabla en las bases de datos relacionales.
+    No impone un esquema.
+
+Documentos:
+
+    Un registro dentro de una colección.
+    Es análogo a un objeto JSON (BSON).
+    La unidad básica dentro de MongoDB.
+    El driver se encarga de las transformaciones de los BSON.
+```
