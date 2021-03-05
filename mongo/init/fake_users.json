@@ -1,9 +1,6 @@
 [
     {
         "_id": "86592943",
-        "group_id": {
-            "$oid": "1d21262d80163b23e1dbd9cd"
-        },
         "username": "VoN",
         "name": "Sudo Von",
         "active": true,

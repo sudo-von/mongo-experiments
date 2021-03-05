@@ -47,7 +47,7 @@ MongoDB Atlas tiene las siguientes características:
 
 <hr>
 
-#### COMANDOS BÁSICOS DE MONGO
+#### Comandos básicos de MongoDB
 
 Correr MongoDB.
 <code>mongo</code>
@@ -82,3 +82,28 @@ db.inventory.insertOne(
 )
 ```
 <hr>
+
+#### ¿Qué son los drivers en MongoDB?
+
+Son las librerías que utilizamos para comunicar nuestra aplicación con nuestra base de datos.
+
+Sin nuestros drivers no podemos trabajar con nuestros cluster de base de datos.
+
+#### ¿Cómo agregar los drivers dentro de nuestro proyecto?
+
+Usamos un gestor de dependencias. Lo agregamos en nuestro gestor de dependencias.
+
+```
+Python: python -m pip install pyongo
+Node.js: npm install mongodb --save
+GO: dep ensure -add go.mongodb.org/mongo-driver/mongo
+```
+
+#### Inicio rápido transversal a la mayoría de lenguajes
+
+<ol>
+<li>Crear conexión MongoCliente.</li>
+<li>Obtener la base de datos MongoDatabase.</li>
+<li>Acceder a una colección MongoCollection.</li>
+<li>CRUD.</li>
+</ol>
