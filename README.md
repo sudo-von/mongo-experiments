@@ -44,3 +44,41 @@ MongoDB Atlas tiene las siguientes características:
 <li>Disponible en AWS, GCP y Microsoft Azure</li>
 <li>Fácil monitoreo y optimización</li>
 </ul>
+
+<hr>
+
+#### COMANDOS BÁSICOS DE MONGO
+
+Correr MongoDB.
+<code>mongo</code>
+Crear y usar una DB.
+<code>use DB</code>
+Listar DBS.
+<code>show dbs</code>
+Crear colección e insertar documento.
+<code>db.COLLECTION.insertOne({"name":"VoN"})</code>
+Listar documentos de una colección.
+<code>db.COLLECTION.find()</code>
+Listar las colecciones.
+<code>show collections</code>
+Mostrar un documento cualquiera.
+<code>db.COLLECTION.findOne()</code>
+Saber que DB estamos usando.
+<code>db</code>
+
+<hr>
+
+<b>Ejemplo de un insert:</b>
+```
+db.inventory.insertOne(
+    {
+        "_id": "1",
+        "username": "fake",
+        "name": "data",
+        "active": false,
+        "skills": ["Golang"],
+        "cash" : 0
+    }
+)
+```
+<hr>
