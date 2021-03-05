@@ -70,7 +70,7 @@ Saber que DB estamos usando.
 
 <b>Ejemplo de un insert:</b>
 ```
-db.inventory.insertOne(
+db.fake_users.insertOne(
     {
         "_id": "1",
         "username": "fake",
@@ -129,4 +129,125 @@ Documentos:
     Es análogo a un objeto JSON (BSON).
     La unidad básica dentro de MongoDB.
     El driver se encarga de las transformaciones de los BSON.
+```
+
+#### Operaciones CRUD desde la consola de MongoDB
+
+<b>InsertOne()</b> 
+Guarda un documento dentro de la colección en la BD. Si no existe la colección MONGODB la crea. Al hacer un insert dentro de una colección sino especifica el campo _id (es un campo obligatorio que la BD pide) Mongo lo crea automáticamente como un objeto, en el caso de especificarlo puede ser tomado como un string si así lo deseas.
+
+```
+db.fake_users.insertOne(
+    {
+        "_id": "1",
+        "username": "fake",
+        "name": "data",
+        "active": false,
+        "skills": ["Golang"],
+        "cash" : 0
+    }
+)
+```
+
+<b>InsertMany()</b>
+Recibe un arreglo en formato JSON y los ingresa a MongoDB automáticamente MongoDB. Tiene atomicidad dentro de los documentos, esto quiere decir que en el las operaciones de escritura garantiza que al escribir un documento la operación es atómica (se escribe y si no se escribe se hace rollback).
+
+```
+db.fake_users.insertMany(
+    [
+    {
+        "username": "fake",
+        "name": "data",
+        "active": false,
+        "skills": ["Golang"],
+        "cash" : 0
+    },
+        {
+        "username": "fake2",
+        "name": "data2",
+        "active": true,
+        "skills": ["Python"],
+        "cash" : 1
+    }
+    ]
+)
+```
+
+Find({CONDICION}). Se hace una consulta con un filtro y nos permite buscar uno o varios documentos que cumplan la condición.
+
+```
+db.fake_users.find(
+    {
+        "username": "fake"
+    }
+)
+```
+
+<b>FindOne()</b>
+Devuelve los documentos en orden natural y retorna la primera coincidencia (orden de índices).
+
+```
+db.fake_users.findOne(
+    {
+        "username" : "fake"
+    }
+)
+```
+
+```
+db.fake_users.findOne(
+    {
+        "username" : "fake",
+        "cash" : { $lte : 5} 
+    }
+)
+```
+
+<b>UpdateOne</b> (Filtro, nuevo valor). 
+
+```
+db.fake_users.updateOne(
+    {
+        "username": "fake"
+    },
+    {
+        "$set": { "username": "not fake" }
+    }
+)
+```
+
+<b>UpdateMany</b> (Filtro, nuevo valor). 
+
+
+```
+db.fake_users.updateMany(
+    {
+        "username": "not fake"
+    },
+    {
+        "$set": { "username": "fake" }
+    }
+)
+```
+
+<b>DeleteOne()</b>
+Hace el paso del filtro, borrará según su orden natural que encuentre con el filtro.
+
+```
+db.fake_users.deleteOne(
+    {
+        "username": "fake"
+    }
+)
+```
+
+<b>DeleteMany()</b>
+Compara el filtro con la cantidad de doc. Que cuplen con el filtro y los borra
+
+```
+db.fake_users.deleteMany(
+    {
+        "username": "fake"
+    }
+)
 ```
