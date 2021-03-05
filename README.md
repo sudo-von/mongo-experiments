@@ -266,3 +266,15 @@ db.fake_users.deleteMany(
     <li>Documentos Embebidos: Documentos dentro de otros documentos ({}).</li>
     <li>Arrays: Arreglos o listas de cualquier otro tipo de datos, incluso, de otras listas.</li>
 </ul>
+
+<hr>
+
+#### Esquemas y relaciones
+
+Los esquemas son la forma en que organizamos nuestros documentos en nuestras colecciones. MongoDB no impone ningún esquema pero podemos seguir buenas prácticas y estructurar nuestros documentos de forma parecida (no igual) para aprovechar la flexibilidad y escalabilidad de la base de datos sin aumentar la complejidad de nuestras aplicaciones.
+
+Las relaciones son la forma en que nuestras entidades o documentos sen encuentran enlazados unos con otros. Por ejemplo: Una carrera tiene multiples cursos y cada curso tiene multiples clases.
+
+#### Relaciones entre documentos
+
+Las documentos embebidos nos ayudan a guardar la información en un solo documento y nos ahorra el tiempo que tardamos en consultar diferentes documentos a partir de referencias. Sin embargo, las referencias siguen siendo muy importantes cuando debemos actualizar información en diferentes lugares de forma continua.
