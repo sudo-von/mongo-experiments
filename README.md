@@ -173,7 +173,8 @@ db.fake_users.insertMany(
 )
 ```
 
-Find({CONDICION}). Se hace una consulta con un filtro y nos permite buscar uno o varios documentos que cumplan la condición.
+<b>Find</b> ({condicion}).
+Se hace una consulta con un filtro y nos permite buscar uno o varios documentos que cumplan la condición.
 
 ```
 db.fake_users.find(
@@ -251,3 +252,17 @@ db.fake_users.deleteMany(
     }
 )
 ```
+
+<hr>
+
+#### Tipos de datos
+
+<ul>
+    <li>Strings: Nos sirven para guardar textos.</li>
+    <li>Boolean: Información cierta o falsa (true y false).</li>
+    <li>ObjectId: Utilizan el tiempo exacto en el que generamos la consulta para siempre generan IDs únicos. Existen en BSON pero no en JSON.</li>
+    <li>Date: Nos sirven para guardar fechas y hacer operaciones de rangos entre ellas.</li>
+    <li>Números: Doubles, Integers, Integers 64 bits y Decimals.</li>
+    <li>Documentos Embebidos: Documentos dentro de otros documentos ({}).</li>
+    <li>Arrays: Arreglos o listas de cualquier otro tipo de datos, incluso, de otras listas.</li>
+</ul>
