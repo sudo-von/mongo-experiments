@@ -278,3 +278,25 @@ Las relaciones son la forma en que nuestras entidades o documentos sen encuentra
 #### Relaciones entre documentos
 
 Las documentos embebidos nos ayudan a guardar la información en un solo documento y nos ahorra el tiempo que tardamos en consultar diferentes documentos a partir de referencias. Sin embargo, las referencias siguen siendo muy importantes cuando debemos actualizar información en diferentes lugares de forma continua.
+
+#### Operadores
+
+<ul>
+    <li><b>$eq:</b> =</li>
+    <li><b>$gt:</b>  ></li>
+    <li><b>$gte:</b> >=</li>
+    <li><b>$lt:</b> <</li>
+    <li><b>$lte:</b> <=</li>
+    <li><b>$ne:</b> !=</li>
+    <li><b>$in:</b> valores dentro de un rango</li>
+    <li><b>$nin:</b> valores que no estan dentro de un rango</li>
+    <li><b>$and:</b> Une queries con un AND logico</li>
+    <li><b>$not:</b> Invierte el efecto de un query</li>
+    <li><b>$nor:</b> Une queries con un NOR logico</li>
+    <li><b>$or:</b> Une queries con un OR logico</li>
+    <li><b>$exist:</b> Docuemntos que cuentan con un campo especifico</li>
+    <li><b>$type:</b> Docuemntos que cuentan con un campo de un tipo especifico</li>
+    <li><b>$all:</b> Arreglos que contengan todos los elementos del query</li>
+    <li><b>$elemMatch:</b> Documentos que cumplen la condicion del $elemMatch en uno de sus elementos</li>
+    <li><b>$size:</b> Documentos que contienen un campo tipo arreglo de un tamaño especifico.</li>
+</ul>
