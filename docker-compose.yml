@@ -10,12 +10,14 @@ services:
       MONGO_INITDB_DATABASE: experiments
   mongo-seed:
     container_name: mongo-seed
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile_seed
     restart: on-failure:10
     depends_on:
      - mongo
     links:
-      - mongo
+     - mongo
   mongo-express:
     container_name: mongo-express
     image: mongo-express
@@ -25,3 +27,19 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: VoN
       ME_CONFIG_MONGODB_ADMINPASSWORD: NoV
+  api:
+    build: 
+      context: go/.
+    container_name: api
+    environment:
+      MONGOURL: mongo
+      ME_CONFIG_MONGODB_AUTH_DATABASE: experiments
+      MONGO_INITDB_ROOT_USERNAME: VoN
+      MONGO_INITDB_ROOT_PASSWORD: NoV
+    restart: on-failure:10
+    depends_on:
+     - mongo
+    links:
+     - mongo
+    ports:
+     - 3000:3000
