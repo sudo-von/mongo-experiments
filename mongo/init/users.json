@@ -1,10 +1,72 @@
 [
     {
-        "_id": "86592943",
-        "username": "VoN",
-        "name": "Sudo Von",
+        "_id": "1",
+        "username": "von",
+        "name": "sudo_von",
         "active": true,
-        "skills": ["Javascript"],
-        "cash" : 340000
+        "animes_watched" : 412
+    },
+    {
+        "_id": "2",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": true,
+        "animes_watched" : 124
+    },
+    {
+        "_id": "3",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": true,
+        "animes_watched" : 232
+    },
+    {
+        "_id": "4",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": true,
+        "animes_watched" : 12
+    },
+    {
+        "_id": "5",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": true,
+        "animes_watched" : 41
+    },
+    {
+        "_id": "6",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": false,
+        "animes_watched" : 3
+    },
+    {
+        "_id": "7",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": true,
+        "animes_watched" : 54
+    },
+    {
+        "_id": "8",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": true,
+        "animes_watched" : 124
+    },
+    {
+        "_id": "9",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": false,
+        "animes_watched" : 42
+    },
+    {
+        "_id": "10",
+        "username": "fake_username",
+        "name": "fake_name",
+        "active": false,
+        "animes_watched" : 54
     }
 ]

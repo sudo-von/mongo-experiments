@@ -1,5 +1,6 @@
 version: '3.1'
 services:
+  # MongoDB service.
   mongo:
     container_name: mongo
     image: mongo
@@ -8,16 +9,17 @@ services:
       MONGO_INITDB_ROOT_USERNAME: VoN
       MONGO_INITDB_ROOT_PASSWORD: NoV
       MONGO_INITDB_DATABASE: experiments
+  # MongoDB populate service.
   mongo-seed:
     container_name: mongo-seed
     build: 
-      context: .
-      dockerfile: Dockerfile_seed
+      context: mongo/.
     restart: on-failure:10
     depends_on:
      - mongo
     links:
      - mongo
+  # MongoDB administration service.
   mongo-express:
     container_name: mongo-express
     image: mongo-express
@@ -27,6 +29,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: VoN
       ME_CONFIG_MONGODB_ADMINPASSWORD: NoV
+  # Golang API service.
   api:
     build: 
       context: go/.
