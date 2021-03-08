@@ -10,6 +10,7 @@ type storage interface {
 	GetUsers() ([]api.User, error)
 	CreateUser(user api.User) (*api.User, error)
 	ReplaceUser(user api.User) (*api.User, error)
+	DeleteUser(id string) error
 }
 
 type Service struct {
@@ -47,4 +48,13 @@ func (s Service) ReplaceUser(user api.User) (*api.User, error) {
 		return nil, err
 	}
 	return dbUser, nil
+}
+
+func (s Service) DeleteUser(id string) error {
+	err := s.storage.DeleteUser(id)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	return nil
 }

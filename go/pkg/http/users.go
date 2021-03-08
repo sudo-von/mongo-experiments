@@ -13,6 +13,7 @@ type UserService interface {
 	GetUsers() ([]api.User, error)
 	CreateUser(user api.User) (*api.User, error)
 	ReplaceUser(user api.User) (*api.User, error)
+	DeleteUser(id string) error
 }
 
 type UserController struct {
@@ -31,6 +32,7 @@ func (c *UserController) Routes() chi.Router {
 	r.Get("/", c.List)
 	r.Post("/", c.Create)
 	r.Put("/{id}", c.ReplaceOne)
+	r.Delete("/{id}", c.DeleteOne)
 	return r
 }
 
@@ -107,5 +109,17 @@ func (c *UserController) ReplaceOne(w http.ResponseWriter, r *http.Request) {
 
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, models.ToResponseUser(res))
+	return
+}
+
+// DeleteOne deletes an user.
+func (c *UserController) DeleteOne(w http.ResponseWriter, r *http.Request) {
+
+	id := chi.URLParam(r, "id")
+	err := c.UserService.DeleteUser(id)
+	if err != nil {
+		CheckError(err, w, r)
+	}
+	render.Status(r, http.StatusOK)
 	return
 }

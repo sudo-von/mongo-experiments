@@ -93,3 +93,19 @@ func (r *Repository) ReplaceUser(user api.User) (*api.User, error) {
 	newUser := toApiUser(userM)
 	return &newUser, nil
 }
+
+func (r *Repository) DeleteUser(id string) error {
+
+	if !bson.IsObjectIdHex(id) {
+		return errors.New("Is not an hex id")
+	}
+
+	session := r.Session.Copy()
+	defer session.Close()
+	com := session.DB(r.DatabaseName).C("users")
+	err := com.Remove(bson.M{"_id": bson.ObjectIdHex(id)})
+	if err != nil {
+		return err
+	}
+	return nil
+}
