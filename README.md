@@ -42,6 +42,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#todo">To-do</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -90,6 +91,26 @@ I used Docker to create containers for all these services so that anyone could r
 1. Make requests to the endpoints you want to test using an <b>HTTP Client</b> like <b>Postman/Insomnia</b>.
 2. Explore the <b>workbook folder</b>.
 3. If you want to learn more abouth <b>MongoDB theory</b> then read the theory file.
+
+## TO-DO
+
+#### REST API ENDPOINTS
+
+<ul>
+    <li style="text-decoration-line: line-through;"><span style="font-weight: bold; color: green;">GET</span> /users</li>
+    <li style="text-decoration-line: line-through;"><span style="font-weight: bold; color: blue;">POST</span> /users</li>
+    <li><span style="font-weight: bold; color: orange;">PUT</span> /users</li>
+    <li><span style="font-weight: bold; color: red;">DELETE</span> /users</li>
+    <br>
+    <li><span style="font-weight: bold; color: green;">GET</span> /animes</li>
+    <li><span style="font-weight: bold; color: blue;">POST</span> /animes</li>
+    <li><span style="font-weight: bold; color: orange;">PUT</span> /animes</li>
+    <li><span style="font-weight: bold; color: red;">DELETE</span> /animes</li>
+</ul>
+
+#### Workbook
+
+<a target="_blank" href="http://nicholasjohnson.com/mongo/course/workbook/">http://nicholasjohnson.com/mongo/course/workbook/<a>
 
 <!-- CONTRIBUTING -->
 ## Contributing
