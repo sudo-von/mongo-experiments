@@ -6,7 +6,7 @@
 <br />
 <p align="center">
   <a>
-    <img src="https://static.wikia.nocookie.net/shingeki-no-kyojin/images/6/64/Eren_Jaeger_854_%28Anime%29.png/revision/latest/scale-to-width-down/340?cb=20210305233525&path-prefix=es" alt="Logo" width="80" height="80" style="border-radius: 100px;">
+    <img src="https://static.wikia.nocookie.net/shingeki-no-kyojin/images/6/64/Eren_Jaeger_854_%28Anime%29.png/revision/latest/scale-to-width-down/340?cb=20210305233525&path-prefix=es" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">mongo-experiments</h3>
@@ -42,6 +42,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#todo">To-do</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -54,8 +55,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I decided to create a repository that would allow me to practice basic / advanced queries in MongoDB so i created a REST API to test some of these queries,
-the rest of them will be found in a separate file in the workbook folder since i will insert them directly into the Mongo console. 
+I decided to create a repository that would allow me to practice basic / advanced queries in MongoDB so i created a REST API in Golang to test the basic  query operations (Create, Read, Update, Delete).
+
+Due my limited time, the advanced queries won't be in the REST API as endpoints but feel free to collaborate in the case that you want to improve this. For now, if you want to found the advanced queries they will be in a separate file in the workbook folder since i will use them directly into the MongoDB console. 
 
 I used Docker to create containers for all these services so that anyone could run the project and collaborate.
 
@@ -66,6 +68,7 @@ I used Docker to create containers for all these services so that anyone could r
 * [Golang](https://golang.org/)
 * [Go-chi](https://github.com/go-chi/chi)
 * [MongoDB](https://www.mongodb.com/)
+* [MongoExpress](https://github.com/mongo-express/mongo-express)
 
 ### Prerequisites
 
@@ -83,34 +86,52 @@ I used Docker to create containers for all these services so that anyone could r
    ```sh
    docker-compose up --build
    ```
-3. <b>Verify</b> that the services are running.
-
+3. By default, <b>there will always be 3 documents</b> in the database collection because i didn't want to use volumes, these documents will be deleted and inserted every time you build the container, if you want to add more documents you can do it in the mongo/init/users.json file, also, if you put a json with a new structure and file name, it will be inserted as well as long as it is within the same default path at mongo/init/.
+<br >
+4. <b>Verify</b> that the services are running.
+  ```sh
+  Successfully tagged mongo-experiments_api:latest
+  Starting mongo         ... done
+  Starting mongo-express ... done
+  Starting mongo-seed    ... done
+  Starting api           ... done
+  ```
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 1. Make requests to the endpoints you want to test using an <b>HTTP Client</b> like <b>Postman/Insomnia</b>.
+![insomnia](img/insomnia.jpg)
+
 2. Explore the <b>workbook folder</b>.
-3. If you want to learn more abouth <b>MongoDB theory</b> then read the theory file.
+3. If you want to learn more about <b>MongoDB theory</b> then read the theory file.
+
+## Services
+
+| Port | Service | Description |
+| ------ | ------ | ------ |
+| 3000 | api | Golang REST API service.|
+| 27917 | mongo | MongoDB service. |
+| 8081 | mongo-express | Web-based MongoDB admin interface written with Node.js, Express and Bootstrap3.|
 
 ## TO-DO
 
-#### REST API ENDPOINTS
+##### Docker containers
 
 <ul>
-    <li style="text-decoration-line: line-through;"><span style="font-weight: bold; color: green;">GET</span> /users</li>
-    <li style="text-decoration-line: line-through;"><span style="font-weight: bold; color: blue;">POST</span> /users</li>
-    <li><span style="font-weight: bold; color: orange;">PUT</span> /users</li>
-    <li><span style="font-weight: bold; color: red;">DELETE</span> /users</li>
-    <br>
-    <li><span style="font-weight: bold; color: green;">GET</span> /animes</li>
-    <li><span style="font-weight: bold; color: blue;">POST</span> /animes</li>
-    <li><span style="font-weight: bold; color: orange;">PUT</span> /animes</li>
-    <li><span style="font-weight: bold; color: red;">DELETE</span> /animes</li>
+    <li>~~MongoDB~~</li>
+    <li>~~Mongo seed~~</li>
+    <li>~~Mongo express~~</li>
+    <li>~~Golang REST API~~</li>
 </ul>
 
-#### Workbook
+##### Rest API endpoints
 
-<a target="_blank" href="http://nicholasjohnson.com/mongo/course/workbook/">http://nicholasjohnson.com/mongo/course/workbook/<a>
+<ul>
+    <li>~~GET /users~~</li>
+    <li>~~POST /users~~</li>
+    <li>~~PUT /users~~</li>
+    <li>~~DELETE /users~~</li>
+</ul>
 
 <!-- CONTRIBUTING -->
 ## Contributing
