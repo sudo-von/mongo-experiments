@@ -12,6 +12,7 @@ import (
 type UserService interface {
 	GetUsers() ([]api.User, error)
 	CreateUser(user api.User) (*api.User, error)
+	ReplaceUser(user api.User) (*api.User, error)
 }
 
 type UserController struct {
@@ -29,6 +30,7 @@ func (c *UserController) Routes() chi.Router {
 	r := chi.NewRouter()
 	r.Get("/", c.List)
 	r.Post("/", c.Create)
+	r.Put("/{id}", c.ReplaceOne)
 	return r
 }
 
@@ -39,7 +41,7 @@ func (c *UserController) List(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
-	res := &models.Users{}
+	res := &models.UserList{}
 	for _, user := range list {
 		res.Users = append(res.Users, models.ToResponseUser(&user))
 	}
@@ -65,6 +67,40 @@ func (c *UserController) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	res, err := c.UserService.CreateUser(newUser)
+	if err != nil {
+		CheckError(err, w, r)
+	}
+
+	render.Status(r, http.StatusOK)
+	render.Render(w, r, models.ToResponseUser(res))
+	return
+}
+
+// ReplaceOne updates an old user replacing it with a new one.
+func (c *UserController) ReplaceOne(w http.ResponseWriter, r *http.Request) {
+
+	id := chi.URLParam(r, "id")
+	data := &models.UpdateUserPayload{}
+	if err := render.Bind(r, data); err != nil {
+		render.Render(w, r, models.ErrInvalidRequest(err))
+		return
+	}
+
+	newUser := &api.User{ID: id}
+	if data.Username != "" {
+		newUser.Username = data.Username
+	}
+	if data.Name != "" {
+		newUser.Name = data.Name
+	}
+	if data.Active != nil {
+		newUser.Active = *data.Active
+	}
+	if data.AnimesWatched != nil {
+		newUser.AnimesWatched = *data.AnimesWatched
+	}
+
+	res, err := c.UserService.ReplaceUser(*newUser)
 	if err != nil {
 		CheckError(err, w, r)
 	}

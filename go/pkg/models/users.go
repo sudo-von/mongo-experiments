@@ -7,7 +7,7 @@ import (
 	"github.com/mongo-experiments/go/pkg/api"
 )
 
-type Users struct {
+type UserList struct {
 	Users []*UserResponse `bson:"results" json:"results"`
 }
 
@@ -19,7 +19,7 @@ type User struct {
 	AnimesWatched float64 `bson:"animes_watched" json:"animes_watched"`
 }
 
-func (mt *Users) Render(w http.ResponseWriter, r *http.Request) error {
+func (mt *UserList) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
@@ -47,6 +47,24 @@ func (up *UserPayload) validate() (err error) {
 }
 
 func (up *UserPayload) Bind(r *http.Request) error {
+	if err := up.validate(); err != nil {
+		return err
+	}
+	return nil
+}
+
+type UpdateUserPayload struct {
+	Username      string   `json:"username"`
+	Name          string   `json:"name"`
+	Active        *bool    `json:"active"`
+	AnimesWatched *float64 `json:"animes_watched"`
+}
+
+func (up *UpdateUserPayload) validate() (err error) {
+	return nil
+}
+
+func (up *UpdateUserPayload) Bind(r *http.Request) error {
 	if err := up.validate(); err != nil {
 		return err
 	}

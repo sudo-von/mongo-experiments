@@ -9,6 +9,7 @@ import (
 type storage interface {
 	GetUsers() ([]api.User, error)
 	CreateUser(user api.User) (*api.User, error)
+	ReplaceUser(user api.User) (*api.User, error)
 }
 
 type Service struct {
@@ -32,6 +33,15 @@ func (s Service) GetUsers() ([]api.User, error) {
 
 func (s Service) CreateUser(user api.User) (*api.User, error) {
 	dbUser, err := s.storage.CreateUser(user)
+	if err != nil {
+		log.Println(err)
+		return nil, err
+	}
+	return dbUser, nil
+}
+
+func (s Service) ReplaceUser(user api.User) (*api.User, error) {
+	dbUser, err := s.storage.ReplaceUser(user)
 	if err != nil {
 		log.Println(err)
 		return nil, err

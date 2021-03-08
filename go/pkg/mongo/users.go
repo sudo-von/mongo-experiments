@@ -1,6 +1,8 @@
 package mongo
 
 import (
+	"errors"
+
 	"github.com/mongo-experiments/go/pkg/api"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -14,7 +16,6 @@ type userModel struct {
 }
 
 func toUserModel(user api.User) userModel {
-
 	var userID bson.ObjectId
 	if user.ID != "" {
 		userID = bson.ObjectIdHex(user.ID)
@@ -47,10 +48,15 @@ func (r *Repository) GetUsers() ([]api.User, error) {
 	defer session.Close()
 	com := session.DB(r.DatabaseName).C("users")
 
-	users := []api.User{}
-	err := com.Find(bson.M{}).All(&users)
+	var usersM []userModel
+	err := com.Find(bson.M{}).All(&usersM)
 	if err != nil {
 		return nil, err
+	}
+
+	users := make([]api.User, 0)
+	for _, m := range usersM {
+		users = append(users, toApiUser(m))
 	}
 	return users, nil
 }
@@ -63,6 +69,24 @@ func (r *Repository) CreateUser(user api.User) (*api.User, error) {
 	userM := toUserModel(user)
 
 	err := com.Insert(userM)
+	if err != nil {
+		return nil, err
+	}
+	newUser := toApiUser(userM)
+	return &newUser, nil
+}
+
+func (r *Repository) ReplaceUser(user api.User) (*api.User, error) {
+
+	if !bson.IsObjectIdHex(user.ID) {
+		return nil, errors.New("Is not an hex id")
+	}
+
+	session := r.Session.Copy()
+	defer session.Close()
+	com := session.DB(r.DatabaseName).C("users")
+	userM := toUserModel(user)
+	err := com.Update(bson.M{"_id": userM.ID}, bson.M{"$set": userM})
 	if err != nil {
 		return nil, err
 	}
