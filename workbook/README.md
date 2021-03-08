@@ -23,7 +23,9 @@ Use the use command to connect to a new database (If it doesn't exist, Mongo wil
 solution: 
 use test;
 ```
+
 <hr>
+
 ```
 Use db.createCollection to create a collection. I'll leave the subject up to you.
 
@@ -36,7 +38,9 @@ solution:
 show dbs;
 show collections;
 ```
+
 <hr>
+
 ```
 Insert a couple of documents into your collection. I'll leave the subject matter up to you, perhaps cars or hats.
 
@@ -58,11 +62,14 @@ db.users.insert(
     }
 )
 ```
+
 <hr>
+
 ```
 Use find() to list them out.
 
 solution:
 db.users.find()
 ```
+
 <hr>
