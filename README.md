@@ -87,15 +87,15 @@ I used Docker to create containers for all these services so that anyone could r
    docker-compose up --build
    ```
 3. By default, <b>there will always be 3 documents</b> in the database collection because i didn't want to use volumes, these documents will be deleted and inserted every time you build the container, if you want to add more documents you can do it in the mongo/init/users.json file, also, if you put a json with a new structure and file name, it will be inserted as well as long as it is within the same default path at mongo/init/.
-<br >
 4. <b>Verify</b> that the services are running.
-  ```sh
+  ```
   Successfully tagged mongo-experiments_api:latest
   Starting mongo         ... done
   Starting mongo-express ... done
   Starting mongo-seed    ... done
   Starting api           ... done
   ```
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -118,19 +118,19 @@ I used Docker to create containers for all these services so that anyone could r
 ##### Docker containers
 
 <ul>
-    <li>~~MongoDB~~</li>
-    <li>~~Mongo seed~~</li>
-    <li>~~Mongo express~~</li>
-    <li>~~Golang REST API~~</li>
+    <li><del>MongoDB</del></li>
+    <li><del>Mongo seed</del></li>
+    <li><del>Mongo express</del></li>
+    <li><del>Golang REST API</del></li>
 </ul>
 
 ##### Rest API endpoints
 
 <ul>
-    <li>~~GET /users~~</li>
-    <li>~~POST /users~~</li>
-    <li>~~PUT /users~~</li>
-    <li>~~DELETE /users~~</li>
+    <li><del>GET /users</del></li>
+    <li><del>POST /users</del></li>
+    <li><del>PUT /users</del></li>
+    <li><del>DELETE /users</del></li>
 </ul>
 
 <!-- CONTRIBUTING -->
