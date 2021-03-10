@@ -90,7 +90,7 @@ Tell me how many weeks there are in a human lifetime of 80 years.
 We can switch to a database in Mongo with the use command.
 
 ```
-> use petshop;
+use petshop;
 ```
 
 This will switch to writing to the petshop database. It doesn't matter if the database doesn't exist yet. It will be brought into existence when you first write a document to it.
@@ -98,9 +98,9 @@ This will switch to writing to the petshop database. It doesn't matter if the da
 You can find which database you are using simply by typing db. You can drop the current database and everything in it using db.dropDatabase.
 
 ```
-> db;
+db;
 petshop
-> db.dropDatabase();
+db.dropDatabase();
 ```
 
 <hr>
@@ -110,8 +110,8 @@ petshop
 ```
 Use the use command to connect to a new database (If it doesn't exist, Mongo will create it when you write to it).
 
-> use test;
-> db.testing.insert({fake: "data"});
+use test;
+db.testing.insert({fake: "data"});
 
 That was easy wasn't it. Don't worry, it gets a bit harder.
 ```
@@ -127,8 +127,8 @@ Because Mongo has no joins, a Mongo query can pull data from only one collection
 You can create a collection using the createCollection command.
 
 ```
-> use petshop;
-> db.createCollection('mammals');
+use petshop;
+db.createCollection('mammals');
 ```
 
 Collections will also be created automatically. If you write a document to a collection that doesn't exist that collection will be brought into being for you.
@@ -136,8 +136,8 @@ Collections will also be created automatically. If you write a document to a col
 View your databases and collections using the show command, like this:
 
 ```
-> show dbs;
-> show collections;
+show dbs;
+show collections;
 ```
 
 <hr>
@@ -147,8 +147,8 @@ View your databases and collections using the show command, like this:
 ```
 Use db.createCollection to create a collection. I'll leave the subject up to you.
 
-> use experiments;
-> db.createCollection;
+use experiments;
+db.createCollection;
 function(name, opt) {
     var options = opt || {};
 
@@ -157,21 +157,21 @@ function(name, opt) {
 
     return this._dbCommand(cmd);
 }
-> db.createCollection("test", {});
+db.createCollection("test", {});
 { "ok" : 1 }
 ```
 
 ```
 Run show dbs and show collections to view your database and collections.
 
-> show dbs;
+show dbs;
 admin        0.000GB
 config       0.000GB
 experiments  0.000GB
 local        0.000GB
-> use experiments;
+use experiments;
 switched to db experiments
-> show collections;
+show collections;
 animes
 test
 ```
@@ -200,7 +200,7 @@ db.mammals.insert({name: "Star Nosed Mole"})
 ```
 Insert a couple of documents into your collection. I'll leave the subject matter up to you, perhaps cars or hats.
 
-> db.users.insert(
+db.users.insert(
     {
         "username": "von",
         "name": "sudo_von",
@@ -209,7 +209,7 @@ Insert a couple of documents into your collection. I'll leave the subject matter
     }
 );
 
-> db.users.insert(
+db.users.insert(
     {
         "username": "nov",
         "name": "sudo_nov",
@@ -218,7 +218,7 @@ Insert a couple of documents into your collection. I'll leave the subject matter
     }
 );
 
-> db.users.insertMany(
+db.users.insertMany(
     [
         {
             "username": "von",
@@ -246,7 +246,7 @@ You can find a document or documents matching a particular pattern using the fin
 If you want to find all the mammals in the mammals collection, you can do this easily.
 
 ```
-> db.mammals.find();
+db.mammals.find();
 ```
 
 <hr>
@@ -256,7 +256,7 @@ If you want to find all the mammals in the mammals collection, you can do this e
 ```
 Use find() to list them out.
 
-> db.users.find();
+db.users.find();
 ```
 
 <hr>
@@ -288,7 +288,7 @@ The Aggregate pipeline allows us to chain operations together and pipe a set of 
 You can use find with no arguments to list documents in a collection.
 
 ```
-> db.entrycodes.find();
+db.entrycodes.find();
 ```
 
 This will list all of the codes, 20 at a time.
@@ -296,7 +296,7 @@ This will list all of the codes, 20 at a time.
 You can get the same result by passing an empty object, like so:
 
 ```
-> db.entrycodes.find({});
+db.entrycodes.find({});
 ```
 
 #### Finding by ID
@@ -304,7 +304,7 @@ You can get the same result by passing an empty object, like so:
 Assuming you know the object ID of a document. You can pull that document by id like so:
 
 ```
-> db.entrycodes.find(ObjectId("557afc91c0b20703009f7edf"));
+db.entrycodes.find(ObjectId("557afc91c0b20703009f7edf"));
 ```
 
 The _id field of any collection is automatically indexed.
@@ -316,13 +316,13 @@ IDs are 12 byte BSON objects, not Strings which is why we need the ObectId funct
 Say you have a list of users and you want to find by name, you might do:
 
 ```
-> db.people.find({name: "dave"});
+db.people.find({name: "dave"});
 ```
 
 You can match on more than one field:
 
 ```
-> db.people.find({
+db.people.find({
   name: "dave",
   email: "davey@aol.com"
 });
@@ -331,7 +331,7 @@ You can match on more than one field:
 You can match on numbers:
 
 ```
-> db.people.find({
+db.people.find({
   name: "dave",
   age: 69,
   email: "davey@aol.com"
@@ -341,7 +341,7 @@ You can match on numbers:
 You also match using a regex (although be aware this is slow on large data sets):
 
 ```
-> db.people.find({
+db.people.find({
   name: /dave/
 });
 ```
@@ -355,13 +355,13 @@ We need to start out by inserting some data which we can work with.
 ```
 Paste the following into your terminal to create a petshop with some pets in it
 
-> use petshop;
-> db.pets.insert({name: "Mikey", species: "Gerbil"});
-> db.pets.insert({name: "Davey Bungooligan", species: "Piranha"});
-> db.pets.insert({name: "Suzy B", species: "Cat"});
-> db.pets.insert({name: "Mikey", species: "Hotdog"});
-> db.pets.insert({name: "Terrence", species: "Sausagedog"});
-> db.pets.insert({name: "Philomena Jones", species: "Cat"});
+use petshop;
+db.pets.insert({name: "Mikey", species: "Gerbil"});
+db.pets.insert({name: "Davey Bungooligan", species: "Piranha"});
+db.pets.insert({name: "Suzy B", species: "Cat"});
+db.pets.insert({name: "Mikey", species: "Hotdog"});
+db.pets.insert({name: "Terrence", species: "Sausagedog"});
+db.pets.insert({name: "Philomena Jones", species: "Cat"});
 ```
 
 
@@ -399,7 +399,7 @@ db.pets.find({name: "Mikey"});
 ```
 Find all the creatures named Mikey who are gerbils.
 
-> db.pets.find({name: "Mikey", species: "Gerbil"});
+db.pets.find({name: "Mikey", species: "Gerbil"});
 ```
 
 ```
@@ -475,7 +475,7 @@ use people;
       name: randName(),
       age: randAge(100)
     }
-    if (Math.random() > 0.8) {
+    if (Math.random() 0.8) {
       person.cat = {
         name: randName(),
         age: randAge(18)
@@ -560,7 +560,7 @@ We can even filter using an arbitrary JavaScript expression using $where. This w
 
 ```
 db.sandwiches.find({
-  $where: "this.jam && this.peanutButter && this.jam > this.peanutButter"
+  $where: "this.jam && this.peanutButter && this.jam this.peanutButter"
 });
 ```
 
@@ -651,5 +651,36 @@ db.people.find({ cat: { $exists : true } }, { cat: true} );
 ```
 
 When you output the cats, you will need to find only people who have cats, where cats $exists, or you will have gaps in your data.
+
+<hr>
+
+#### Aggregation
+
+We can do much more complex projection, even creating new fields based on expressions using the aggregate pipeline. More on this in a bit.
+
+#### Excluding the id field
+
+You will notice that the ID field is always passed through project by default. This is often desirable, but you may wish to hide it, perhaps to conceal your implementation, or to keep your communication over the wire tight.
+
+You can do this easily by passing _id: false:
+
+```
+db.breakfast.find({}, {
+  eggs: true,
+  lime: true,
+  _id: false
+});
+```
+
+<hr>
+
+#### Exercise - remove the ids
+
+```
+List the cats. 
+Remove the ids from the output.
+
+db.people.find({ cat: { $exists : true } }, { cat: true, _id: false } );
+```
 
 <hr>
