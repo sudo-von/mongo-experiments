@@ -502,7 +502,42 @@ db.people.find({ age: { $gt: 65 }});
 Find all the teenagers, greater than 12 and less than 20.
 
 db.people.find({ age: { $gt: 12, $lt: 20}});
-``````
+```
 
 <hr>
 
+#### $exists
+
+We can use exists to filter on the existence of non-existence of a field. We might find all the breakfasts with eggs:
+
+```
+db.breakfast.find({
+  eggs: {
+    $exists: true
+  }
+});
+```
+
+<hr>
+
+#### Exercise - $exists
+
+```
+Find all the people with cats.
+
+db.people.find({ cat : { $exists : true } });
+```
+
+```
+Find all the pensioners with cats.
+
+db.people.find({ age: { $gt: 65 }, cat: { $exists: true } });
+```
+
+```
+Find all the teenagers with teenage cats.
+
+db.people.find({ age: { $gt: 12, $lt: 20 }, cat: { $exists: true }, "cat.age" : { $gt: 12, $lt: 20 } });
+```
+
+<hr>
