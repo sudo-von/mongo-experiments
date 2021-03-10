@@ -541,3 +541,52 @@ db.people.find({ age: { $gt: 12, $lt: 20 }, cat: { $exists: true }, "cat.age" : 
 ```
 
 <hr>
+
+#### \$gt and \$lt
+
+We can use \$gt and \$lt to find documents that have fields which are greater than or less than a value:
+
+```
+db.breakfast.find({
+  starRating: {
+    $gt: 5
+  }
+});
+```
+
+#### \$where
+
+We can even filter using an arbitrary JavaScript expression using $where. This will allow us to compare two fields in a single document.
+
+```
+db.sandwiches.find({
+  $where: "this.jam && this.peanutButter && this.jam > this.peanutButter"
+});
+```
+
+Here we find all the sandwiches with jam and peanut butter where the jam quotient outweighs the peanut butter.
+
+Warning: It's easy to overuse $where since it appears to do everything with plain old JavaScript. \$where is eval-ing a JavaScript expression and as such is slow. Mongo can make no optimisations here, and must execute the JavaScript on every single document in the collection. Prefer the native operators where possible.
+
+#### 
+Exercise - $where
+
+```
+Use $where to find all the people whohave a cat.
+
+db.people.find({ $where : "this.cat" });
+```
+
+```
+Find all the people who are youngerthan their cats. Remember, not everyonehas a cat, so you will need to use aboolean && to filter out the non-catowners.
+
+db.people.find({ $where : "this.cat && this.age < this.cat.age" });
+```
+
+```
+Does anyone have the same name as theircat? Re-run the insertion script tocreate more records until someone does.
+
+db.people.find({ $where : "this.cat && this.name === this.cat.name " });
+```
+
+<hr>
