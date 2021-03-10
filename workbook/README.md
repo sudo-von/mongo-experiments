@@ -260,3 +260,154 @@ Use find() to list them out.
 ```
 
 <hr>
+
+#### Finding documents
+
+Mongo comes with a set of convenience functions for performing common operations. Find is one such function. It allows us to find documents by providing a partial match, or an expression.
+
+#### Uses
+
+You can use find to:
+
+<ul>
+    <li>Find a document by id.</li>
+    <li>Find a user by email.</li>
+    <li>Find a list of all users with the same first name.</li>
+    <li>Find all cats who are more than 12 years old.</li>
+    <li>Find all gerbils called 'Herbie' who are bald, have three or more eyes, and who have exactly 3 legs.</li>
+</ul>
+
+#### Limitations
+
+You <b>can't</b> use find to chain complex operators. You can do a few simple things like counting, but if you want to real power you need the aggregate pipeline, which is actually not at all scary and is quite easy to use.
+
+The Aggregate pipeline allows us to chain operations together and pipe a set of documents from one operation to the next.
+
+#### Using find
+
+You can use find with no arguments to list documents in a collection.
+
+```
+> db.entrycodes.find();
+```
+
+This will list all of the codes, 20 at a time.
+
+You can get the same result by passing an empty object, like so:
+
+```
+> db.entrycodes.find({});
+```
+
+#### Finding by ID
+
+Assuming you know the object ID of a document. You can pull that document by id like so:
+
+```
+> db.entrycodes.find(ObjectId("557afc91c0b20703009f7edf"));
+```
+
+The _id field of any collection is automatically indexed.
+
+IDs are 12 byte BSON objects, not Strings which is why we need the ObectId function. If you want to read more on ObjectId, you can do so here.
+
+#### Finding by partial match
+
+Say you have a list of users and you want to find by name, you might do:
+
+```
+> db.people.find({name: "dave"});
+```
+
+You can match on more than one field:
+
+```
+> db.people.find({
+  name: "dave",
+  email: "davey@aol.com"
+});
+```
+
+You can match on numbers:
+
+```
+> db.people.find({
+  name: "dave",
+  age: 69,
+  email: "davey@aol.com"
+});
+```
+
+You also match using a regex (although be aware this is slow on large data sets):
+
+```
+> db.people.find({
+  name: /dave/
+});
+```
+
+<hr>
+
+#### Exercise
+
+We need to start out by inserting some data which we can work with.
+
+```
+Paste the following into your terminal to create a petshop with some pets in it
+
+> use petshop;
+> db.pets.insert({name: "Mikey", species: "Gerbil"});
+> db.pets.insert({name: "Davey Bungooligan", species: "Piranha"});
+> db.pets.insert({name: "Suzy B", species: "Cat"});
+> db.pets.insert({name: "Mikey", species: "Hotdog"});
+> db.pets.insert({name: "Terrence", species: "Sausagedog"});
+> db.pets.insert({name: "Philomena Jones", species: "Cat"});
+```
+
+
+```
+Add another piranha, and a naked mole rat called Henry.
+
+db.pets.insert({name: "Henry", species: "Piranha"});
+db.pets.insert({name: "Henry", species: "Gerbil"});
+```
+
+```
+Use find to list all the pets. 
+
+db.pets.find({});
+```
+
+```
+Find the ID of Mikey the Gerbil.
+
+db.pets.find({_id: ObjectId("60486846f769f151022845fc")});
+```
+
+```
+Use find to find all the gerbils.
+
+db.pets.find({species: "Gerbil"});
+```
+
+```
+Find all the creatures named Mikey.
+
+db.pets.find({name: "Mikey"});
+```
+
+```
+Find all the creatures named Mikey who are gerbils.
+
+db.pets.find({name: "Mikey", species: "Gerbil"});
+```
+
+```
+Find all the creatures with the string "dog" in their species.
+
+db.pets.find({species: /dog/});
+```
+
+<hr>
+
+#### Finding with Expressions and comparison queries
