@@ -399,7 +399,7 @@ db.pets.find({name: "Mikey"});
 ```
 Find all the creatures named Mikey who are gerbils.
 
-db.pets.find({name: "Mikey", species: "Gerbil"});
+> db.pets.find({name: "Mikey", species: "Gerbil"});
 ```
 
 ```
@@ -411,3 +411,98 @@ db.pets.find({species: /dog/});
 <hr>
 
 #### Finding with Expressions and comparison queries
+
+We have seen how we can find elements by passing Mongo a partial match, like so:
+db.people.find({name: 'Yolanda Sasquatch'})
+
+We can also find using expressions. We define these using JSON, like so:
+
+```
+db.people.find({
+  age: {
+    $gt: 65
+  }
+});
+```
+
+We can use operators like this:
+
+```
+$gt - Greater than
+$lt - Less than
+$exists - The field exists
+```
+
+See the full list here:
+
+http://docs.mongodb.org/manual/reference/operator/query/
+
+<hr>
+
+#### Exercise
+
+Copy the following code into a Mongo terminal. It will create a collection of people, some of whom will have cats.
+
+Optionally modify the code so that some people have piranhas, and some have dachshunds.
+
+```
+use people;
+(function() {
+  var names = [
+    'Yolanda',
+    'Iska',
+    'Malone',
+    'Frank',
+    'Foxton',
+    'Pirate',
+    'Poppelhoffen',
+    'Elbow',
+    'Fluffy',
+    'Paphat'
+  ]
+  var randName = function() {
+    var n = names.length;
+    return [
+      names[Math.floor(Math.random() * n)],
+      names[Math.floor(Math.random() * n)]
+    ].join(' ');
+  }
+  var randAge = function(n) {
+    return Math.floor(Math.random() * n);
+  }
+  for (var i = 0; i < 1000; ++i) {
+    var person = {
+      name: randName(),
+      age: randAge(100)
+    }
+    if (Math.random() > 0.8) {
+      person.cat = {
+        name: randName(),
+        age: randAge(18)
+      }
+    }
+    db.people.insert(person);
+  };
+})();
+```
+
+```
+Use find to get all the people who are exactly 99 years old.
+
+db.people.find({ age: { $eq: 99 }});
+```
+
+```
+Find all the people who are eligible for a bus pass (people older than 65).
+
+db.people.find({ age: { $gt: 65 }});
+```
+
+```
+Find all the teenagers, greater than 12 and less than 20.
+
+db.people.find({ age: { $gt: 12, $lt: 20}});
+``````
+
+<hr>
+
