@@ -590,3 +590,66 @@ db.people.find({ $where : "this.cat && this.name === this.cat.name " });
 ```
 
 <hr>
+
+#### 
+Projection
+
+Find takes a second parameter which allows you to whitelist fields to pass into the output document. We call this projection.
+
+You can choose fields to pass though, like so:
+
+```
+{
+  ham: 4,
+  eggs: 2
+}
+{
+  cheese: 6,
+  lime: 0.5
+}
+db.breakfast.find({}, {
+  eggs: true,
+  lime: true
+});
+```
+
+This will yield:
+
+```
+{
+  eggs: 2
+},
+{
+  lime: 0.5
+}
+```
+
+<hr>
+
+#### Exercise - Tidy up your output
+
+```
+Use projection to format your array of people. 
+We want only the names.
+
+db.people.find({}, { name: true} );
+```
+
+```
+Output just the names of the people whoare 99 years old.
+
+db.people.find({ age: { $eq : 99 } }, { name: true} );
+
+```
+
+```
+Output only the cats, like this:
+
+{ "cat" : { "name" : "Fluffy Frank", "age" : 13 } }
+
+db.people.find({ cat: { $exists : true } }, { cat: true} );
+```
+
+When you output the cats, you will need to find only people who have cats, where cats $exists, or you will have gaps in your data.
+
+<hr>
