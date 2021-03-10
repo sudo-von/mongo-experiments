@@ -17,7 +17,7 @@
     <a href="https://github.com/sudo-von/mongo-experiments"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/sudo-von/mongo-experiments">View Demo</a>
+    <a href="https://github.com/sudo-von/mongo-experiments/tree/master/workbook">View Workbook</a>
     ·
     <a href="https://github.com/sudo-von/mongo-experiments/issues">Report Bug</a>
     ·
@@ -57,7 +57,7 @@
 
 I decided to create a repository that would allow me to practice basic / advanced queries in MongoDB so i created a REST API in Golang to test the basic  query operations (Create, Read, Update, Delete).
 
-Due my limited time, the advanced queries won't be in the REST API as endpoints but feel free to collaborate in the case that you want to improve this. For now, if you want to found the advanced queries they will be in a separate file in the workbook folder since i will use them directly into the MongoDB console. 
+Due my limited time, the advanced queries won't be in the REST API as endpoints but feel free to collaborate in the case that you want to improve this. For now, if you want to found the advanced queries they will be in a separate file in the <a href="https://github.com/sudo-von/mongo-experiments/tree/master/workbook" target="_blank">workbook folder</a> since i will use them directly into the MongoDB console. 
 
 I used Docker to create containers for all these services so that anyone could run the project and collaborate.
 
@@ -102,7 +102,7 @@ I used Docker to create containers for all these services so that anyone could r
 1. Make requests to the endpoints you want to test using an <b>HTTP Client</b> like <b>Postman/Insomnia</b>.
 ![insomnia](img/insomnia.jpg)
 
-2. Explore the <b>workbook folder</b>.
+2. Explore the <b><a href="https://github.com/sudo-von/mongo-experiments/tree/master/workbook" target="_blank">workbook folder</a></b>.
 3. If you want to learn more about <b>MongoDB theory</b> then read the theory file.
 
 ## Services
@@ -115,7 +115,7 @@ I used Docker to create containers for all these services so that anyone could r
 
 ## TO-DO
 
-##### Docker containers
+##### <del>Docker containers</del>
 
 <ul>
     <li><del>MongoDB</del></li>
@@ -124,7 +124,13 @@ I used Docker to create containers for all these services so that anyone could r
     <li><del>Golang REST API</del></li>
 </ul>
 
-##### Rest API endpoints
+##### Create docker volume
+
+##### Use environment variables
+
+##### Refactor API
+
+##### <del>Rest API endpoints</del>
 
 <ul>
     <li><del>GET /users</del></li>
