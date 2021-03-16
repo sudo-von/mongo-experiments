@@ -17,7 +17,7 @@
     <a href="https://github.com/sudo-von/mongo-experiments"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/sudo-von/mongo-experiments/tree/master/workbook">View Workbook</a>
+    <a href="https://github.com/sudo-von/mongo-experiments/tree/master/workbook/solutions">View Workbook</a>
     ·
     <a href="https://github.com/sudo-von/mongo-experiments/issues">Report Bug</a>
     ·
