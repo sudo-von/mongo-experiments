@@ -110,7 +110,7 @@ I used Docker to create containers for all these services so that anyone could r
 | Port | Service | Description |
 | ------ | ------ | ------ |
 | 3000 | api | Golang REST API service.|
-| 27917 | mongo | MongoDB service. |
+| 27017 | mongo | MongoDB service. |
 | 8081 | mongo-express | Web-based MongoDB admin interface written with Node.js, Express and Bootstrap3.|
 
 ## TO-DO
